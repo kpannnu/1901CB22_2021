@@ -1,18 +1,18 @@
-    def get_memory_score(list):
-        score=0
-        memory=[]
-        for x in list:
-            if x in memory:
-                score=score+1
-                continue
-            elif len(memory)==5:
-                del memory[0]
-                memory.append(x)
-            else :
-                memory.append(x)
+def get_memory_score(list):
+    score=0
+    memory=[]
+    for x in list:
+        if x in memory:
+            score=score+1
+            continue
+        elif len(memory)==5:
+            del memory[0]
+            memory.append(x)
+        else :
+            memory.append(x)
     
         
-        return score
+    return score
 
 input_nums = [3, 4, 5, 3, 2, 1]
 invalid_list=[]
