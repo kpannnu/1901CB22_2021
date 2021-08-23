@@ -17,7 +17,7 @@ def get_memory_score(list):
 input_nums = [3, 4, 5, 3, 2, 1]
 invalid_list=[]
 for x in input_nums:
-    if ( type(9)!=type(x)):
+    if ( type(9)!=type(x)):#checking whether a number is integer or not
         invalid_list.append(x)
 if(len(invalid_list)!=0):
     print("\"Please enter a valid input list\". Invalid inputs detected\": {}".format(invalid_list))
