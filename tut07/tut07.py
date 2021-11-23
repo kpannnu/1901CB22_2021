@@ -6,7 +6,7 @@ import os
 
 path=os.path.join(os.getcwd()+"/course_feedback_remaining.xlsx") # checking if course_feedback_remaining.xlsx already exists in the directory ,if it exists then delete it
 if os.path.isfile(path):
-	os.remove(path)
+	os.remove(path)                                              #if the output file already exists then delete it
 
 
 
