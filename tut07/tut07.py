@@ -55,7 +55,8 @@ def feedback_not_submitted():
 			
 			for expected_feed_type in nonzero_bit_list:
 				if [line[0],line[3],expected_feed_type] not in list_1:# checking if list of  name ,course_code and expected_feedtype matches with any list or element of list_1 that we formed above and see if a particular student have filled the feedback output for particular course ,if it matches then the student have filled feedback for that course and for that feedback type of the course if not then student details with that course code will go to remaing_feedback.csv
-					output_list.append([line[0],line[1],line[2],line[3],dict2[line[0]][0],dict2[line[0]][1],dict2[line[0]][2],dict2[line[0]][3]])#appending the row containing student details taken form student info csv  along with the course name of that student who didn't filled the expected feedback for that feedback type of a particular coure 
+					output_list.append([line[0],line[1],line[2],line[3],dict2[line[0]][0],dict2[line[0]][1],dict2[line[0]][2],dict2[line[0]][3]])#appending the row containing student details taken form student info csv  along with the course name of that student who didn't filled the expected feedback for that feedback type of a particular course
+					break       #if a student have not filled a particular feedback type of a course that is required to be filled then no need to check for other feedback type for that course as feedback type column  is not asked for that course in final ouptut file so we break the loop as soon as a particular feedback type of a course is not filled
 
 			
 	wb=Workbook()
