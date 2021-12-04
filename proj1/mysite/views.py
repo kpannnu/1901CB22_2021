@@ -9,11 +9,6 @@ import mimetypes
 from django.views.generic import TemplateView
 from django.core.files.storage import FileSystemStorage
 from django.core.mail import EmailMessage
-# import smtplib
-# from email.mime.text import MIMEText
-# from email.mime.multipart import MIMEMultipart
-# from email.mime.base import MIMEBase
-# from email import encoders
 import csv
 import os
 import shutil
@@ -27,7 +22,6 @@ dict3={}
 dict4={}
 header=[]
 check=[]
-posi,nega=0,0
 def master_roll():                                                                              #mapping roll no. with name in dict1 using master_roll.csv
     with open(os.path.join(os.getcwd()+r"/Input_files/master_roll.csv")) as f:
         reader=csv.reader(f)
@@ -181,16 +175,16 @@ def marksheet(posi,nega):                                        #function that 
 
         wb.save(os.getcwd()+r"/output_marksheet/"+"{}.xlsx".format(x))               #saving the marksheet of a roll no.
 
-def foo(posi,nega):                                        #function that generate the marksheet of all roll no's
+def foo(posi1,nega1):                                        #function that generate the marksheet of all roll no's
     for x in dict2:
         if x in dict2:                              #checking if the roll no is present in response csv if he is not means he was absent and will get a blank marksheet
             question_list=answer(dict2[x])
-            a=question_list[0]*posi
-            b=question_list[1]*nega
-            dict3[x]=question_list+[str(a+b)+"/{}".format(question_list[3]*posi)]
+            a=question_list[0]*posi1
+            b=question_list[1]*nega1
+            dict3[x]=question_list+[str(a+b)+"/{}".format(question_list[3]*posi1)]
 
-def concise_marksheet(posi,nega):
-    foo(posi,nega)
+def concise_marksheet(posi1,nega1):
+    foo(posi1,nega1)
     with open(os.getcwd()+r"/concise_marksheet.csv",'w',newline='') as file:
         writer=csv.writer(file)
         line=[]
@@ -233,10 +227,12 @@ def function(request):
 
 def concise_sheet(request):
     if request.method=='POST':
-        # master_roll()
-        # responses()
-        # check_ANSWER()
-        concise_marksheet(posi,nega)
+        marks3=request.POST['marks3']
+        marks4=request.POST['marks4']
+        print(float(marks3)+float(marks4))
+        posi1=float(marks3)
+        nega1=0-float(marks4)
+        concise_marksheet(posi1,nega1)
     return render(request,'index.html',{'message1':'concise_marksheet.csv is formed'})
 
 

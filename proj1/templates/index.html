@@ -24,13 +24,16 @@
             /* padding: 20px; */
             padding-left: 150px;
         }
-        h3,h4{
+        h3,h4,h5{
             color:rgb(0, 38, 255);
 
         }
         p{
             padding-left: 460px;
             font-size:20px;
+        }
+        hr{
+            border: 1px solid black;
         }
     </style>
 </head>
@@ -41,13 +44,13 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div>
-            <h3>Enter a CSV file that contains the names and roll number of all the students of the class.</h3>
+            <h4>Enter a CSV file that contains the names and roll number of all the students of the class.</h4>
             <label for="myfile1">Select a file:</label>
             <input type="file" id="myfile1" name="myfile1" accept=".CSV" required>
 
         </div>
         <div>
-            <h3>Enter a CSV file that contains the responses of each student of the class.</h3>
+            <h4>Enter a CSV file that contains the responses of each student of the class.</h4>
             <label for="myfile2">Select a file:</label>
             <input type="file" id="myfile2" name="myfile2" accept=".CSV" required>
 
@@ -58,9 +61,9 @@
     <form method="post" action={% url 'function' %}>
         {% csrf_token %}
         <div>
-            <h4>Enter positive(+) marks</h4>
+            <h5>Enter marks for correct answer.</h5>
             <input id="marks1" type="text" name="marks1">
-            <h4>Enter negative(-) marks</h4>
+            <h5>Enter negative(-) marks for wrong answer.</h5>
             <input id="marks2" type="text" name="marks2">
         </div>
         <br>
@@ -69,9 +72,16 @@
             {{message}}
         </div>
     </form>
-    <hr>
+    <hr >
     <form method="post" action={% url 'concise_sheet' %}>
         {% csrf_token %}
+        <div>
+            <h5>Enter marks for correct answer.</h5>
+            <input id="marks3" type="text" name="marks3">
+            <h5>Enter negative(-) marks for wrong answer.</h5>
+            <input id="marks4" type="text" name="marks4">
+        </div>
+        <br>
         <div>
             <button>Generate concise marksheets.</button>
             {{message1}}
